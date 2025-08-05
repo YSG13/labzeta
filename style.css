@@ -5,22 +5,23 @@
   box-sizing: border-box;
 }
 
-/* === BODY BACKGROUND & CANVAS === */
-body {
+/* === BODY STYLING === */
+html, body {
+  height: 100%;
   background-color: #0a0f1f; /* Dark navy blue */
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   overflow: hidden;
   position: relative;
-  height: 100vh;
 }
 
+/* === BINARY CANVAS === */
 canvas#binary {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
   z-index: 0;
+  width: 100vw;
+  height: 100vh;
   pointer-events: none;
 }
 
@@ -35,17 +36,18 @@ canvas#binary {
   cursor: pointer;
 }
 
-/* === HOMEPAGE CENTER BUTTONS === */
+/* === CENTER BUTTONS === */
 .center-buttons {
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   display: flex;
   gap: 40px;
-  z-index: 1;
+  z-index: 5; /* Above canvas */
 }
 
+/* === BUTTON STYLE === */
 .glow-button {
   padding: 20px 40px;
   border: none;
@@ -66,7 +68,7 @@ canvas#binary {
 
 /* === PROJECT PAGE === */
 .project-page {
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -82,7 +84,7 @@ canvas#binary {
 
 /* === REQUEST PAGE === */
 .request-box {
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
