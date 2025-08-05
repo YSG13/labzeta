@@ -2,62 +2,56 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Lab Zeta - Request</title>
+  <title>Lab Zeta – Request</title>
   <link rel="stylesheet" href="style.css">
-  <script type="module" src="firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.24.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.24.0/firebase-firestore-compat.js"></script>
+  <script src="script.js" defer></script>
 </head>
 <body>
-  <canvas id="binary-canvas"></canvas>
+  <img src="logo.PNG" id="logo" onclick="location.href='index.html'" />
 
-  <img src="logo.PNG" class="logo" onclick="window.location.href='index.html'">
+  <form id="request-form">
+    <input type="number" id="number" placeholder="Number" required />
+    <input type="text" id="description" placeholder="Project description..." required />
+    <button type="submit" class="glow-button">Submit</button>
+  </form>
 
-  <div class="request-form">
-    <input type="number" id="number" placeholder="Number" required>
-    <input type="text" id="description" placeholder="Project description..." required>
-    <button onclick="submitRequest()">Submit</button>
-  </div>
-
-  <script src="binary.js"></script>
   <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
+    // Firebase config (yours already correct)
     const firebaseConfig = {
       apiKey: "AIzaSyDBtqayuoxeF-xOhkpR_MaxNVsAUvVPqsM",
       authDomain: "labzeta-finally.firebaseapp.com",
       projectId: "labzeta-finally",
-      storageBucket: "labzeta-finally.appspot.com",
+      storageBucket: "labzeta-finally.firebasestorage.app",
       messagingSenderId: "469242097545",
       appId: "1:469242097545:web:07e6d3bc43d978ae1cbb58",
       measurementId: "G-P3Y5ZG9VZL"
     };
 
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
 
-    window.submitRequest = async function () {
-      const number = document.getElementById('number').value;
-      const description = document.getElementById('description').value;
+    // Submit handler
+    document.getElementById("request-form").addEventListener("submit", async (e) => {
+      e.preventDefault();
 
-      if (!number || !description) {
-        alert("Fill both fields.");
-        return;
-      }
+      const number = document.getElementById("number").value;
+      const description = document.getElementById("description").value;
 
       try {
-        await addDoc(collection(db, "requests"), {
+        await db.collection("requests").add({
           number,
           description,
           timestamp: new Date()
         });
-        alert("Request submitted ✅");
-        document.getElementById('number').value = '';
-        document.getElementById('description').value = '';
-      } catch (e) {
-        console.error("Error adding document: ", e);
-        alert("Submission failed ❌");
+        alert("Request submitted successfully!");
+        document.getElementById("request-form").reset();
+      } catch (err) {
+        console.error("Error adding request: ", err);
+        alert("Failed to submit. Check console.");
       }
-    };
+    });
   </script>
 </body>
 </html>
