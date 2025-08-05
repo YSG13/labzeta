@@ -1,34 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Lab Zeta – Request</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Request – Lab Zeta</title>
   <link rel="stylesheet" href="style.css">
+  <script src="binary.js" defer></script>
 </head>
 <body>
-  <canvas id="binaryCanvas"></canvas>
-  <img src="logo.PNG" class="logo" onclick="goHome()" alt="Lab Zeta logo">
-
-  <!-- Home button -->
-  <a href="index.html" class="btn nav-home">← Home</a>
-
-  <!-- Simple number+description form -->
-  <div class="request-page">
-    <input type="number" name="number" placeholder="Number" required>
-    <input type="text" name="desc" placeholder="Project description…" required>
-    <button class="btn" onclick="submitReq()">Submit</button>
+  <canvas id="bg"></canvas>
+  <div class="container">
+    <a href="index.html">
+      <img src="logo.PNG" alt="Lab Zeta" class="logo">
+    </a>
+    <form class="request-form">
+      <label>
+        Number
+        <input type="number" placeholder="Enter #">
+      </label>
+      <label>
+        Project description
+        <input type="text" placeholder="What do you need?">
+      </label>
+      <button type="submit">Submit</button>
+    </form>
   </div>
-
-  <script src="binary.js"></script>
-  <script>
-    function goHome() {
-      window.location.href = 'index.html';
-    }
-    function submitReq() {
-      alert('Your request has been submitted.');
-      // wire up to your backend later
-    }
-  </script>
 </body>
 </html>
