@@ -1,36 +1,44 @@
 const canvas = document.getElementById('binaryCanvas');
-const ctx    = canvas.getContext('2d');
+const ctx = canvas.getContext('2d');
 
 function resize() {
-  canvas.width  = innerWidth;
-  canvas.height = innerHeight;
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
 }
 window.addEventListener('resize', resize);
 resize();
 
-// how many columns of falling chars:
 const fontSize = 16;
-let columns   = Math.floor(canvas.width / fontSize);
-let drops     = Array(columns).fill(1);
-const chars    = '01';
+let columns = Math.floor(canvas.width / fontSize);
+let drops = Array(columns).fill(0);
 
 function draw() {
-  // semi-transparent overlay for trail effect
-  ctx.fillStyle = 'rgba(11,17,32,0.15)';
-  ctx.fillRect(0,0,canvas.width, canvas.height);
+  // fade the old text with a translucent navy
+  ctx.fillStyle = 'rgba(11,18,53,0.1)';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  ctx.fillStyle = '#cccccc';             // faint gray
-  ctx.font      = fontSize + 'px monospace';
+  ctx.fillStyle = 'rgba(200,200,200,0.5)';
+  ctx.font = `${fontSize}px monospace`;
 
-  for (let i = 0; i < drops.length; i++) {
-    const text = chars.charAt(Math.floor(Math.random() * chars.length));
-    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+  for (let i = 0; i < columns; i++) {
+    const text = Math.random() > 0.5 ? '1' : '0';
+    const x = i * fontSize;
+    const y = drops[i] * fontSize;
+    ctx.fillText(text, x, y);
 
-    if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+    if (y > canvas.height && Math.random() > 0.975) {
       drops[i] = 0;
     }
     drops[i]++;
   }
+
+  requestAnimationFrame(draw);
 }
 
-setInterval(draw, 50);
+// if user resizes, recalc columns & drops[]
+window.addEventListener('resize', () => {
+  columns = Math.floor(canvas.width / fontSize);
+  drops = Array(columns).fill(0);
+});
+
+draw();
