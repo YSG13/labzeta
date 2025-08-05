@@ -1,7 +1,7 @@
 /* ===== reset & base ===== */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body {
-  background-color: #0b1235;
+  background-color: #060b28;    /* darker navy */
   overflow: hidden;
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
   color: #fff;
@@ -21,7 +21,7 @@ body {
   position: fixed;
   top: 20px;
   left: 20px;
-  width: 100px;
+  width: 170px;                 /* bumped from 100px */
   height: auto;
   cursor: pointer;
   z-index: 5;
@@ -38,11 +38,12 @@ body {
   font-size: 1em;
   text-align: center;
   transition: background-color .2s, box-shadow .2s;
+  box-shadow: 0 0 12px rgba(221,106,31,0.8);  /* constant glow */
   z-index: 5;
 }
 .btn:hover {
   background-color: #c55c1c;
-  box-shadow: 0 0 8px rgba(221,106,31,0.6);
+  box-shadow: 0 0 18px rgba(221,106,31,1);    /* stronger on hover */
 }
 
 /* ===== home-button on sub-pages ===== */
@@ -104,8 +105,9 @@ body {
   left: 50%;
   transform: translate(-50%,-50%);
   display: flex;
-  gap: 12px;
-  align-items: center;
+  flex-direction: column;         /* stack inputs vertically */
+  gap: 16px;
+  align-items: flex-start;
   z-index: 5;
 }
 .request-page input {
@@ -113,12 +115,13 @@ body {
   font-size: 1em;
   border: 1px solid #555;
   border-radius: 6px;
-  background: #0b1235;
+  background: #060b28;            /* match darker navy */
   color: #fff;
   outline: none;
-  width: 160px;
+  width: 200px;
 }
 .request-page button {
+  align-self: center;             /* center the submit button under inputs */
   padding: 12px 24px;
   font-size: 1em;
 }
