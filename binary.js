@@ -1,38 +1,31 @@
-document.addEventListener('DOMContentLoaded', function () {
-  const canvas = document.createElement('canvas');
-  canvas.id = 'binaryCanvas';
-  document.body.appendChild(canvas);
+const canvas = document.getElementById("binaryCanvas");
+const ctx = canvas.getContext("2d");
 
-  const ctx = canvas.getContext('2d');
+canvas.height = window.innerHeight;
+canvas.width = window.innerWidth;
 
-  canvas.style.position = 'fixed';
-  canvas.style.top = '0';
-  canvas.style.left = '0';
-  canvas.style.zIndex = '-1';
+const letters = "01";
+const fontSize = 16;
+const columns = canvas.width / fontSize;
 
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+const drops = Array.from({ length: columns }).fill(1);
 
-  const fontSize = 16;
-  const columns = Math.floor(canvas.width / fontSize);
-  const drops = Array(columns).fill(1);
+function draw() {
+  ctx.fillStyle = "rgba(10, 10, 30, 0.15)";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  const draw = () => {
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = '#ffffff';
-    ctx.font = fontSize + 'px monospace';
+  ctx.fillStyle = "#bbbbbb";
+  ctx.font = `${fontSize}px monospace`;
 
-    for (let i = 0; i < drops.length; i++) {
-      const text = Math.random() > 0.5 ? '0' : '1';
-      ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+  for (let i = 0; i < drops.length; i++) {
+    const text = letters[Math.floor(Math.random() * letters.length)];
+    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
 
-      if (drops[i] * fontSize > canvas.height || Math.random() > 0.975) {
-        drops[i] = 0;
-      }
-      drops[i]++;
+    if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+      drops[i] = 0;
     }
-  };
+    drops[i]++;
+  }
+}
 
-  setInterval(draw, 80); // FASTER but still readable
-});
+setInterval(draw, 50);
