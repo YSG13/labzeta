@@ -1,34 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Lab Zeta – Projects</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Your Projects – Lab Zeta</title>
   <link rel="stylesheet" href="style.css">
+  <script src="binary.js" defer></script>
 </head>
 <body>
-  <canvas id="binaryCanvas"></canvas>
-  <img src="logo.PNG" class="logo" onclick="goHome()" alt="Lab Zeta logo">
-
-  <!-- Home button -->
-  <a href="index.html" class="btn nav-home">← Home</a>
-
-  <!-- Your projects listing -->
-  <div class="projects-page">
+  <canvas id="bg"></canvas>
+  <div class="container">
+    <a href="index.html">
+      <img src="logo.PNG" alt="Lab Zeta" class="logo">
+    </a>
     <h1>Your Projects</h1>
-    <div class="projects-grid">
-      <a href="#" class="project-card">Project 1</a>
-      <a href="#" class="project-card">Project 2</a>
-      <a href="#" class="project-card">Project 3</a>
-      <!-- add more as needed -->
-    </div>
+    <ul class="project-list">
+      <li><a href="#">Project 1</a></li>
+      <li><a href="#">Project 2</a></li>
+      <li><a href="#">Project 3</a></li>
+    </ul>
   </div>
-
-  <script src="binary.js"></script>
-  <script>
-    function goHome() {
-      window.location.href = 'index.html';
-    }
-  </script>
 </body>
 </html>
