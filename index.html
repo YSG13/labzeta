@@ -7,12 +7,20 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <img src="logo.PNG" alt="Lab Zeta Logo" class="logo" />
-  <canvas id="binary"></canvas>
+  <canvas id="binaryCanvas"></canvas>
+
+  <img src="logo.png" class="logo" onclick="goHome()" />
+
   <div class="button-container">
     <a href="projects.html" class="glow-button">Projects</a>
     <a href="request.html" class="glow-button">Request</a>
   </div>
+
   <script src="binary.js"></script>
+  <script>
+    function goHome() {
+      window.location.href = "index.html";
+    }
+  </script>
 </body>
 </html>
