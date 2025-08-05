@@ -1,37 +1,42 @@
-/* reset margins, make sure canvas covers whole screen */
-html, body {
+/* reset */
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+/* full screen bg */
+html, body {
+  width: 100%;
+  height: 100%;
   overflow: hidden;
 }
 
-/* deeper navy/charcoal background */
 body {
-  background-color: #0C111F;
+  background-color: #0C111F; /* darker navy/charcoal */
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
   color: #fff;
   position: relative;
 }
 
-/* full-screen matrix canvas */
 canvas#bg {
   position: fixed;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
+  top: 0;
+  left: 0;
   z-index: 1;
 }
 
-/* main content sits on top */
 .container {
   position: relative;
   z-index: 2;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
 }
 
 /* logo as home button */
@@ -43,16 +48,15 @@ canvas#bg {
   cursor: pointer;
 }
 
-/* button row on home */
+/* home-page buttons */
 .buttons {
   display: flex;
   gap: 1rem;
 }
 
-/* orange buttons, less glare, darker */
 button {
-  background-color: #D65A0E;
-  color: #fff;
+  background-color: #D65A0E; /* vibrant orange */
+  color: white;
   border: none;
   padding: 1rem 2rem;
   font-size: 1rem;
@@ -64,4 +68,45 @@ button {
 
 button:hover {
   box-shadow: 0 0 16px rgba(214, 90, 14, 1);
+}
+
+/* projects page list */
+.project-list {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.project-list li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.1rem;
+  padding: 0.5rem 1rem;
+}
+
+/* request page form stacking */
+.request-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.request-form label {
+  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.request-form input {
+  padding: 0.5rem 0.8rem;
+  border: none;
+  border-radius: 0.3rem;
+  font-size: 1rem;
+}
+
+.request-form button {
+  align-self: flex-start;
 }
