@@ -3,35 +3,37 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Lab Zeta — Request</title>
+  <title>Lab Zeta – Request</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- Full-screen binary background -->
   <canvas id="binaryCanvas"></canvas>
 
+  <!-- Clickable logo → home -->
   <img src="logo.PNG" class="logo" onclick="goHome()" alt="Lab Zeta logo">
 
-  <form class="content request-form">
-    <label>
-      Number
-      <input type="number" name="number" required>
-    </label>
-    <label>
-      Description
-      <input type="text" name="desc" placeholder="Your request…" required>
-    </label>
-    <button type="submit" class="glow-button">Submit</button>
-  </form>
+  <!-- Home button in top-left corner -->
+  <div class="button-container">
+    <a href="index.html" class="glow-button">← Home</a>
+  </div>
+
+  <!-- Request form, number + description + submit -->
+  <div class="request-container">
+    <input type="number" name="number" placeholder="Number" required>
+    <input type="text" name="desc" placeholder="Project description…" required>
+    <button class="glow-button" onclick="submitReq()">Submit</button>
+  </div>
 
   <script src="binary.js"></script>
   <script>
     function goHome() {
-      window.location.href = "index.html";
+      window.location.href = 'index.html';
     }
-    document.querySelector('.request-form').addEventListener('submit', e => {
-      e.preventDefault();
-      alert('Request submitted!');
-    });
+    function submitReq() {
+      alert('Your request has been submitted.');
+      // TODO: wire up to your backend
+    }
   </script>
 </body>
 </html>
