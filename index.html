@@ -1,26 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Lab Zeta</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Lab Zeta – Home</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- Full-screen binary background -->
   <canvas id="binaryCanvas"></canvas>
 
-  <!-- clickable logo (case-sensitive filename!) -->
+  <!-- Logo / Home button -->
   <img src="logo.PNG" class="logo" onclick="goHome()" alt="Lab Zeta logo">
 
-  <div class="button-container">
-    <a href="projects.html" class="glow-button">Projects</a>
-    <a href="request.html" class="glow-button">Request</a>
+  <!-- Main menu buttons -->
+  <div class="nav-buttons">
+    <a href="projects.html" class="btn">Projects</a>
+    <a href="request.html" class="btn">Request</a>
   </div>
 
   <script src="binary.js"></script>
   <script>
     function goHome() {
-      window.location.href = "index.html";
+      window.location.href = 'index.html';
     }
   </script>
 </body>
