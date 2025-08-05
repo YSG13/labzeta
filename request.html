@@ -2,28 +2,62 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Request – Lab Zeta</title>
+  <title>Lab Zeta - Request</title>
   <link rel="stylesheet" href="style.css">
-  <script src="binary.js" defer></script>
+  <script type="module" src="firebase.js"></script>
 </head>
 <body>
-  <canvas id="bg"></canvas>
-  <div class="container">
-    <a href="index.html">
-      <img src="logo.PNG" alt="Lab Zeta" class="logo">
-    </a>
-    <form class="request-form">
-      <label>
-        Number
-        <input type="number" placeholder="Enter #">
-      </label>
-      <label>
-        Project description
-        <input type="text" placeholder="What do you need?">
-      </label>
-      <button type="submit">Submit</button>
-    </form>
+  <canvas id="binary-canvas"></canvas>
+
+  <img src="logo.PNG" class="logo" onclick="window.location.href='index.html'">
+
+  <div class="request-form">
+    <input type="number" id="number" placeholder="Number" required>
+    <input type="text" id="description" placeholder="Project description..." required>
+    <button onclick="submitRequest()">Submit</button>
   </div>
+
+  <script src="binary.js"></script>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDBtqayuoxeF-xOhkpR_MaxNVsAUvVPqsM",
+      authDomain: "labzeta-finally.firebaseapp.com",
+      projectId: "labzeta-finally",
+      storageBucket: "labzeta-finally.appspot.com",
+      messagingSenderId: "469242097545",
+      appId: "1:469242097545:web:07e6d3bc43d978ae1cbb58",
+      measurementId: "G-P3Y5ZG9VZL"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    window.submitRequest = async function () {
+      const number = document.getElementById('number').value;
+      const description = document.getElementById('description').value;
+
+      if (!number || !description) {
+        alert("Fill both fields.");
+        return;
+      }
+
+      try {
+        await addDoc(collection(db, "requests"), {
+          number,
+          description,
+          timestamp: new Date()
+        });
+        alert("Request submitted ✅");
+        document.getElementById('number').value = '';
+        document.getElementById('description').value = '';
+      } catch (e) {
+        console.error("Error adding document: ", e);
+        alert("Submission failed ❌");
+      }
+    };
+  </script>
 </body>
 </html>
