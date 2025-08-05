@@ -1,6 +1,7 @@
-const canvas = document.getElementById('binaryCanvas');
+const canvas = document.getElementById('bg');
 const ctx = canvas.getContext('2d');
 
+// resize handler
 function resize() {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
@@ -8,37 +9,41 @@ function resize() {
 window.addEventListener('resize', resize);
 resize();
 
+// settings
 const fontSize = 16;
-let columns = Math.floor(canvas.width / fontSize);
-let drops = Array(columns).fill(0);
+const columns = Math.floor(canvas.width / fontSize);
+const drops = new Array(columns).fill(0);
 
+// helper: random bit
+function randomBit() {
+  return Math.random() < 0.5 ? '0' : '1';
+}
+
+// draw loop
 function draw() {
-  // fade the old text with a translucent navy
-  ctx.fillStyle = 'rgba(11,18,53,0.1)';
+  // dark, nearly opaque clear to keep background rich
+  ctx.fillStyle = 'rgba(12, 17, 31, 0.08)';
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  ctx.fillStyle = 'rgba(200,200,200,0.5)';
-  ctx.font = `${fontSize}px monospace`;
+  // light gray bits
+  ctx.fillStyle = '#ccc';
+  ctx.font = fontSize + 'px monospace';
 
   for (let i = 0; i < columns; i++) {
-    const text = Math.random() > 0.5 ? '1' : '0';
     const x = i * fontSize;
     const y = drops[i] * fontSize;
-    ctx.fillText(text, x, y);
 
+    ctx.fillText(randomBit(), x, y);
+
+    // reset when offscreen, randomly
     if (y > canvas.height && Math.random() > 0.975) {
       drops[i] = 0;
     }
-    drops[i]++;
-  }
 
-  requestAnimationFrame(draw);
+    // SLOWER descent
+    drops[i] += 0.3;
+  }
 }
 
-// if user resizes, recalc columns & drops[]
-window.addEventListener('resize', () => {
-  columns = Math.floor(canvas.width / fontSize);
-  drops = Array(columns).fill(0);
-});
-
-draw();
+// kick off at ~24fps
+setInterval(draw, 42);
