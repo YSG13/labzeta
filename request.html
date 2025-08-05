@@ -1,28 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Lab Zeta – Request</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Full-screen binary background -->
   <canvas id="binaryCanvas"></canvas>
-
-  <!-- Clickable logo → home -->
   <img src="logo.PNG" class="logo" onclick="goHome()" alt="Lab Zeta logo">
 
-  <!-- Home button in top-left corner -->
-  <div class="button-container">
-    <a href="index.html" class="glow-button">← Home</a>
-  </div>
+  <!-- Home button -->
+  <a href="index.html" class="btn nav-home">← Home</a>
 
-  <!-- Request form, number + description + submit -->
-  <div class="request-container">
+  <!-- Simple number+description form -->
+  <div class="request-page">
     <input type="number" name="number" placeholder="Number" required>
     <input type="text" name="desc" placeholder="Project description…" required>
-    <button class="glow-button" onclick="submitReq()">Submit</button>
+    <button class="btn" onclick="submitReq()">Submit</button>
   </div>
 
   <script src="binary.js"></script>
@@ -32,7 +27,7 @@
     }
     function submitReq() {
       alert('Your request has been submitted.');
-      // TODO: wire up to your backend
+      // wire up to your backend later
     }
   </script>
 </body>
