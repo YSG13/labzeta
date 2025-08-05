@@ -1,41 +1,53 @@
 const canvas = document.getElementById('bg');
 const ctx = canvas.getContext('2d');
 
-// resize
+// handle resizing
+let fontSize = 16;
+let columns, rows;
 function resize() {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
+  columns = Math.floor(canvas.width / fontSize);
+  rows    = Math.floor(canvas.height / fontSize);
+  initStatic();
 }
 window.addEventListener('resize', resize);
 resize();
 
-const fontSize = 16;
-const columns = Math.floor(canvas.width / fontSize);
-const drops = Array(columns).fill(0);
-
-function randomBit() {
-  return Math.random() < 0.5 ? '0' : '1';
+// create a static background of bits
+let staticBits = [];
+function initStatic() {
+  staticBits = Array.from({length: columns}, () =>
+    Array.from({length: rows}, () => (Math.random()<0.5?'0':'1'))
+  );
 }
 
+const drops = Array(columns).fill(0);
+
 function draw() {
-  // dark translucent overlay
-  ctx.fillStyle = 'rgba(12, 17, 31, 0.08)';
+  // solid background
+  ctx.fillStyle = '#0C111F';
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  ctx.fillStyle = '#ccc';            // faint gray bits
   ctx.font = fontSize + 'px monospace';
 
+  // draw static bits faintly
+  ctx.fillStyle = 'rgba(200,200,200,0.05)';
   for (let i = 0; i < columns; i++) {
-    const x = i * fontSize;
-    const y = drops[i] * fontSize;
-    ctx.fillText(randomBit(), x, y);
-
-    if (y > canvas.height && Math.random() > 0.975) {
-      drops[i] = 0;
+    for (let j = 0; j < rows; j++) {
+      ctx.fillText(staticBits[i][j], i * fontSize, j * fontSize);
     }
-    drops[i] += 0.3;  // much slower fall
+  }
+
+  // draw falling bits
+  ctx.fillStyle = '#ccc';
+  for (let x = 0; x < columns; x++) {
+    const y = drops[x] * fontSize;
+    ctx.fillText(Math.random()<0.5?'0':'1', x * fontSize, y);
+    // reset or advance
+    drops[x] = (y > canvas.height && Math.random() > 0.975) ? 0 : drops[x] + 1;
   }
 }
 
-// ≈24fps
-setInterval(draw, 42);
+// faster refresh (~33fps)
+setInterval(draw, 30);
