@@ -1,35 +1,46 @@
+/* -----------------------------------
+   BASE STYLES
+----------------------------------- */
+* { box-sizing: border-box; }
 body {
   margin: 0;
   padding: 0;
-  background-color: #0b1120; /* Darker navy blue */
+  background-color: #0b1120;  /* darker navy */
   font-family: 'Segoe UI', sans-serif;
+  color: white;
   overflow: hidden;
 }
 
+/* -----------------------------------
+   BINARY CANVAS
+----------------------------------- */
 #binaryCanvas {
   position: fixed;
-  top: 0;
-  left: 0;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
   z-index: -1;
-  width: 100%;
-  height: 100%;
   pointer-events: none;
 }
 
+/* -----------------------------------
+   LOGO
+----------------------------------- */
 .logo {
   position: fixed;
-  top: -1px;
-  left: -1px;
+  top:  8px;
+  left: 8px;
   height: 170px;
   cursor: pointer;
   z-index: 10;
 }
 
+/* -----------------------------------
+   BUTTONS
+----------------------------------- */
 .button-container {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 50%; left:50%;
+  transform: translate(-50%,-50%);
   display: flex;
   gap: 20px;
   z-index: 5;
@@ -39,14 +50,79 @@ body {
   padding: 20px 40px;
   font-size: 24px;
   background-color: #dd6a1f;
-  color: white;
-  border: none;
-  border-radius: 15px;
+  color: #fff;
   text-decoration: none;
+  border-radius: 15px;
   box-shadow: 0 0 10px #dd6a1f;
-  transition: 0.3s ease;
+  transition: box-shadow .3s ease;
+  border: none;
+  cursor: pointer;
 }
 
 .glow-button:hover {
   box-shadow: 0 0 20px #dd6a1f;
+}
+
+/* -----------------------------------
+   CONTENT PAGES
+----------------------------------- */
+.content {
+  position: absolute;
+  top: 50%; left:50%;
+  transform: translate(-50%,-50%);
+  text-align: center;
+  z-index: 5;
+  max-width: 90%;
+}
+
+.project-list {
+  list-style: none;
+  padding: 0;
+  margin: 1em 0;
+}
+
+.project-list li {
+  margin: .75em 0;
+}
+
+.project-list a {
+  color: #dd6a1f;
+  text-decoration: none;
+  font-size: 1.5em;
+}
+
+.back a {
+  color: #ccc;
+  text-decoration: none;
+  font-size: .9em;
+}
+
+/* -----------------------------------
+   REQUEST FORM
+----------------------------------- */
+.request-form {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.request-form label {
+  display: flex;
+  flex-direction: column;
+  font-size: .9em;
+}
+
+.request-form input {
+  padding: 8px;
+  font-size: 1em;
+  margin-top: 4px;
+  border-radius: 6px;
+  border: 1px solid #555;
+  background: #0b1120;
+  color: white;
+}
+
+.request-form button {
+  margin-left: 20px;
 }
