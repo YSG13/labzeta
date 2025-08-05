@@ -1,108 +1,52 @@
-/* reset + full-screen */
-* {
+body {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-}
-html, body {
-  width: 100%; height: 100%;
+  background-color: #1e1f2f; /* bluish-grayish */
   overflow: hidden;
-}
-body {
-  background-color: #0C111F; /* darker navy */
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-  color: #fff;
-  position: relative;
+  font-family: Arial, sans-serif;
 }
 
-/* canvas background */
-canvas#bg {
+#logo {
   position: fixed;
-  width: 100%; height: 100%;
-  top: 0; left: 0;
-  z-index: 1;
-}
-
-/* page wrapper */
-.container {
-  position: relative;
-  z-index: 2;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-/* logo-as-home */
-.logo {
-  position: absolute;
-  top: 1rem;
-  left: 1rem;
+  top: -1px;
+  left: 10px;
   width: 170px;
   cursor: pointer;
+  z-index: 999;
 }
 
-/* home-page buttons */
-.buttons {
-  display: flex;
-  gap: 1rem;
+#binaryCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
 }
-button {
-  background-color: #D65A0E; /* vibrant orange */
-  color: #fff;
+
+.center-buttons {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.glow-btn {
+  background-color: #dd6a1f;
+  color: white;
   border: none;
-  padding: 1rem 2rem;
-  font-size: 1rem;
-  border-radius: 0.5rem;
-  box-shadow: 0 0 8px rgba(214, 90, 14, 0.6);
-  transition: box-shadow 0.3s ease;
+  padding: 20px 40px;
+  font-size: 24px;
+  border-radius: 30px;
   cursor: pointer;
-}
-button:hover {
-  box-shadow: 0 0 16px rgba(214, 90, 14, 1);
-}
-
-/* projects page list as buttons */
-.project-list {
-  list-style: none;
-  display: flex;
-  gap: 1.5rem;
-  margin-top: 1rem;
-}
-.project-list li a {
-  display: inline-block;
-  background-color: #D65A0E;
-  color: #fff;
-  padding: 0.6rem 1.2rem;
-  border-radius: 0.5rem;
+  text-align: center;
   text-decoration: none;
-  box-shadow: 0 0 8px rgba(214, 90, 14, 0.6);
-}
-.project-list li a:hover {
-  box-shadow: 0 0 16px rgba(214, 90, 14, 1);
+  box-shadow: 0 0 15px #dd6a1f, 0 0 30px #dd6a1f70;
+  transition: 0.3s;
 }
 
-/* request form stacking */
-.request-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  margin-top: 1rem;
-}
-.request-form label {
-  font-size: 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.3rem;
-}
-.request-form input {
-  padding: 0.5rem 0.8rem;
-  border: none;
-  border-radius: 0.3rem;
-  font-size: 1rem;
-}
-.request-form button {
-  align-self: flex-start;
+.glow-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px #dd6a1f, 0 0 45px #dd6a1f90;
 }
