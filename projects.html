@@ -1,20 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Lab Zeta - Projects</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lab Zeta – Projects</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <img src="logo.PNG" alt="Lab Zeta Logo" class="logo" onclick="location.href='index.html'" />
-  <canvas id="binary"></canvas>
+  <!-- Full-screen binary background -->
+  <canvas id="binaryCanvas"></canvas>
 
-  <div class="project-page">
-    <h1>Our Projects</h1>
-    <p>Coming soon: you'll be able to scroll through Lab Zeta's best inventions here 🔥</p>
+  <!-- Clickable logo → home -->
+  <img src="logo.PNG" class="logo" onclick="goHome()" alt="Lab Zeta logo">
+
+  <!-- Home button in top-left corner -->
+  <div class="button-container">
+    <a href="index.html" class="glow-button">← Home</a>
+  </div>
+
+  <!-- Your list of projects -->
+  <div class="content">
+    <h1>Your Projects</h1>
+    <div class="projects-grid">
+      <a href="#" class="project-card">Project 1</a>
+      <a href="#" class="project-card">Project 2</a>
+      <a href="#" class="project-card">Project 3</a>
+      <!-- etc… -->
+    </div>
   </div>
 
   <script src="binary.js"></script>
+  <script>
+    function goHome() {
+      window.location.href = 'index.html';
+    }
+  </script>
 </body>
 </html>
