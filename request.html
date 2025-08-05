@@ -2,107 +2,26 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Request — Lab Zeta</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Request</title>
   <link rel="stylesheet" href="style.css" />
-  <script src="https://www.gstatic.com/firebasejs/9.24.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.24.0/firebase-firestore-compat.js"></script>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: sans-serif;
-      background: #0a1230; /* darker background */
-      color: white;
-      overflow: hidden;
-    }
-
-    #logo {
-      position: fixed;
-      top: -1px;
-      left: 10px;
-      height: 170px;
-      cursor: pointer;
-      z-index: 99;
-    }
-
-    form {
-      position: absolute;
-      top: 45%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      align-items: center;
-    }
-
-    input {
-      padding: 10px;
-      font-size: 18px;
-      border: none;
-      border-radius: 5px;
-      width: 300px;
-    }
-
-    .glow-button {
-      background-color: #dd6a1f;
-      color: white;
-      padding: 12px 24px;
-      font-size: 18px;
-      border: none;
-      border-radius: 12px;
-      box-shadow: 0 0 10px #dd6a1f;
-      cursor: pointer;
-      transition: 0.3s ease;
-    }
-
-    .glow-button:hover {
-      box-shadow: 0 0 20px #dd6a1f, 0 0 40px #dd6a1f;
-    }
-  </style>
 </head>
 <body>
-  <img src="logo.PNG" id="logo" onclick="location.href='index.html'" />
+  <canvas id="binaryCanvas"></canvas>
+  <a href="index.html">
+    <img src="logo.png" class="logo" />
+  </a>
+  
+  <div class="form-container">
+    <h2 class="form-title">Send a Request</h2>
+    <form id="requestForm">
+      <input type="number" id="number" name="number" placeholder="Number" required />
+      <textarea id="description" name="description" placeholder="Project Description" required></textarea>
+      <button type="submit" class="glow-btn">Submit</button>
+    </form>
+  </div>
 
-  <form id="request-form">
-    <input type="number" id="number" placeholder="Number" required />
-    <input type="text" id="description" placeholder="Project description..." required />
-    <button type="submit" class="glow-button">Submit</button>
-  </form>
-
-  <script type="module">
-    const firebaseConfig = {
-      apiKey: "AIzaSyDBtqayuoxeF-xOhkpR_MaxNVsAUvVPqsM",
-      authDomain: "labzeta-finally.firebaseapp.com",
-      projectId: "labzeta-finally",
-      storageBucket: "labzeta-finally.firebasestorage.app",
-      messagingSenderId: "469242097545",
-      appId: "1:469242097545:web:07e6d3bc43d978ae1cbb58",
-      measurementId: "G-P3Y5ZG9VZL"
-    };
-
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
-
-    document.getElementById("request-form").addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const number = document.getElementById("number").value;
-      const description = document.getElementById("description").value;
-
-      try {
-        await db.collection("requests").add({
-          number,
-          description,
-          timestamp: new Date()
-        });
-
-        alert("✅ Submitted! We'll get back soon.");
-        document.getElementById("request-form").reset();
-      } catch (error) {
-        console.error("Error submitting request:", error);
-        alert("❌ Failed to submit.");
-      }
-    });
-  </script>
+  <script src="binary.js"></script>
+  <script src="firebase.js"></script>
 </body>
 </html>
