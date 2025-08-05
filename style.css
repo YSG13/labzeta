@@ -1,128 +1,124 @@
-/* -----------------------------------
-   BASE STYLES
------------------------------------ */
-* { box-sizing: border-box; }
+/* ===== reset & base ===== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
 body {
-  margin: 0;
-  padding: 0;
-  background-color: #0b1120;  /* darker navy */
-  font-family: 'Segoe UI', sans-serif;
-  color: white;
+  background-color: #0b1235;
   overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  color: #fff;
 }
 
-/* -----------------------------------
-   BINARY CANVAS
------------------------------------ */
+/* ===== binary canvas ===== */
 #binaryCanvas {
   position: fixed;
+  width: 100%;
+  height: 100%;
   top: 0; left: 0;
-  width: 100%; height: 100%;
-  z-index: -1;
-  pointer-events: none;
+  z-index: 1;
 }
 
-/* -----------------------------------
-   LOGO
------------------------------------ */
+/* ===== logo ===== */
 .logo {
   position: fixed;
-  top:  8px;
-  left: 8px;
-  height: 170px;
+  top: 20px;
+  left: 20px;
+  width: 100px;
+  height: auto;
   cursor: pointer;
-  z-index: 10;
+  z-index: 5;
 }
 
-/* -----------------------------------
-   BUTTONS
------------------------------------ */
-.button-container {
+/* ===== common button style ===== */
+.btn {
+  display: inline-block;
+  padding: 12px 24px;
+  border-radius: 8px;
+  background-color: #dd6a1f;
+  color: #fff;
+  text-decoration: none;
+  font-size: 1em;
+  text-align: center;
+  transition: background-color .2s, box-shadow .2s;
+  z-index: 5;
+}
+.btn:hover {
+  background-color: #c55c1c;
+  box-shadow: 0 0 8px rgba(221,106,31,0.6);
+}
+
+/* ===== home-button on sub-pages ===== */
+.nav-home {
+  position: fixed;
+  top: 20px;
+  left: 140px;
+  z-index: 5;
+}
+
+/* ===== index page nav ===== */
+.nav-buttons {
   position: absolute;
-  top: 50%; left:50%;
+  top: 50%;
+  left: 50%;
   transform: translate(-50%,-50%);
   display: flex;
   gap: 20px;
   z-index: 5;
 }
 
-.glow-button {
-  padding: 20px 40px;
-  font-size: 24px;
-  background-color: #dd6a1f;
-  color: #fff;
-  text-decoration: none;
-  border-radius: 15px;
-  box-shadow: 0 0 10px #dd6a1f;
-  transition: box-shadow .3s ease;
-  border: none;
-  cursor: pointer;
-}
-
-.glow-button:hover {
-  box-shadow: 0 0 20px #dd6a1f;
-}
-
-/* -----------------------------------
-   CONTENT PAGES
------------------------------------ */
-.content {
+/* ===== Projects page ===== */
+.projects-page {
   position: absolute;
-  top: 50%; left:50%;
+  top: 50%;
+  left: 50%;
   transform: translate(-50%,-50%);
   text-align: center;
   z-index: 5;
-  max-width: 90%;
 }
-
-.project-list {
-  list-style: none;
-  padding: 0;
-  margin: 1em 0;
+.projects-page h1 {
+  font-size: 2.5em;
+  margin-bottom: 0.5em;
 }
-
-.project-list li {
-  margin: .75em 0;
-}
-
-.project-list a {
-  color: #dd6a1f;
-  text-decoration: none;
-  font-size: 1.5em;
-}
-
-.back a {
-  color: #ccc;
-  text-decoration: none;
-  font-size: .9em;
-}
-
-/* -----------------------------------
-   REQUEST FORM
------------------------------------ */
-.request-form {
+.projects-grid {
   display: flex;
-  gap: 10px;
-  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
   justify-content: center;
 }
+.project-card {
+  padding: 20px 30px;
+  background: rgba(255,255,255,0.05);
+  border: 2px solid #dd6a1f;
+  border-radius: 12px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.2em;
+  transition: background .3s;
+}
+.project-card:hover {
+  background: rgba(221,106,31,0.2);
+}
 
-.request-form label {
+/* ===== Request page ===== */
+.request-page {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
   display: flex;
-  flex-direction: column;
-  font-size: .9em;
+  gap: 12px;
+  align-items: center;
+  z-index: 5;
 }
-
-.request-form input {
-  padding: 8px;
+.request-page input {
+  padding: 12px;
   font-size: 1em;
-  margin-top: 4px;
-  border-radius: 6px;
   border: 1px solid #555;
-  background: #0b1120;
-  color: white;
+  border-radius: 6px;
+  background: #0b1235;
+  color: #fff;
+  outline: none;
+  width: 160px;
 }
-
-.request-form button {
-  margin-left: 20px;
+.request-page button {
+  padding: 12px 24px;
+  font-size: 1em;
 }
