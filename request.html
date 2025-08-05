@@ -1,23 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Lab Zeta - Request</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lab Zeta — Request</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <img src="logo.PNG" alt="Lab Zeta Logo" class="logo" onclick="location.href='index.html'" />
-  <canvas id="binary"></canvas>
+  <canvas id="binaryCanvas"></canvas>
 
-  <div class="request-box">
-    <form>
-      <input type="number" placeholder="Number" required />
-      <textarea placeholder="Project Description" required></textarea>
-      <button type="submit" class="glow-button">Submit</button>
-    </form>
-  </div>
+  <img src="logo.PNG" class="logo" onclick="goHome()" alt="Lab Zeta logo">
+
+  <form class="content request-form">
+    <label>
+      Number
+      <input type="number" name="number" required>
+    </label>
+    <label>
+      Description
+      <input type="text" name="desc" placeholder="Your request…" required>
+    </label>
+    <button type="submit" class="glow-button">Submit</button>
+  </form>
 
   <script src="binary.js"></script>
+  <script>
+    function goHome() {
+      window.location.href = "index.html";
+    }
+    document.querySelector('.request-form').addEventListener('submit', e => {
+      e.preventDefault();
+      alert('Request submitted!');
+    });
+  </script>
 </body>
 </html>
